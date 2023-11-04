@@ -218,11 +218,6 @@ sum(total_ordered) over (partition by model_year ) as orders_per_model
 from ordered_products;
 
 
-select sum(quantity) from stocks
-group by store_id;
-
-select* from customers;
-
  
 
 
