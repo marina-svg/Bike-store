@@ -1,4 +1,4 @@
--- 1a What store has the most number of orders, ordered quantity , revenue and discount  in total?
+--  What store has the most number of orders, ordered quantity , revenue and discount  in total
 select  s.store_name,
        count(distinct o.order_id) as order_amount,
        sum(oi.quantity) as quantity_amount,
@@ -11,7 +11,7 @@ order by order_amount desc
 ;
 
 
--- What store has the most revenue,  number of orders , quantity of ordered items, discount via timeframe?
+-- What store has the most revenue,  number of orders , quantity of ordered items, discount via timeframe
 
 select o.order_date,
        s.store_name,
@@ -25,7 +25,7 @@ group by o.order_date, s.store_name
 order by o.order_date asc
 ;
 
--- -- What store has the most revenue, number of orders, quantity of ordered items, discount per month?
+-- What store has the most revenue, number of orders, quantity of ordered items, discount per month
 
 select date_format (o.order_date, '%Y-%m') as time_period,
        s.store_name,
@@ -39,7 +39,7 @@ group by time_period, s.store_name
 order by time_period asc
 ;
 
--- statistics of ammount of ordered items and turnover and prices per states and cities.
+-- Statistics of ammount of ordered items and turnover and prices per states and cities.
 
 select c.customer_id,  
 count(distinct o.order_id) as amount_of_orders, 
@@ -55,7 +55,7 @@ order by amount_of_orders desc;
 
 
 
--- If byers made more than 1 buy and in which store?
+-- Shows If byers made more than 1 buy and in which store
 
 with cte as (
     select
@@ -74,7 +74,7 @@ group by  s.store_name, c.order_size
 order by s.store_name
 ;
 
- -- can make one table with repeat buyers CaTEGORIES OF BUYESR BY REPET AND AMOUNT OF SPENT MONEY.
+ -- Shows buyers categories by repeat of purchase and order amountB
  
 
 
@@ -93,7 +93,7 @@ group by o.customer_id
  
 
 
- 
+
  
 -- Statistics of shipped on time/late orders? which store has most late orders?
 
@@ -144,9 +144,9 @@ return kpi;
 end$$
 delimiter ;
 
-select BikeStore.KPI_result('Rowlett Bikes','late delivery') as KPI;
 
--- table with KPI results
+
+-- Table with KPI results
 
 create table KPIResults (
 store_id int,
@@ -192,7 +192,7 @@ with cte as (  select product_id,
                 join categories c on c.category_id=p.category_id)
 			;
 select * from ordered_products;
--- !! can add comparison with average price of brand/category bla bla with max and min price/avg price via all bikes
+
 
 select brand_name, sum(total_ordered) as total_ordered, round(sum(revenue_item),2) as total_brand_revenue from ordered_products
 group by brand_name
